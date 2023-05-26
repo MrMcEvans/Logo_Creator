@@ -25,7 +25,7 @@ var quizQuestions = [
     correctAnswer: 4
   },
   {
-    question: "Who ivented javaScript?",
+    question: "Which of these 4 examples is an effective event listener distinction?",
     choices: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
     correctAnswer: 4
   }
@@ -113,6 +113,7 @@ function startTimer() {
     }
   }, 1000)
 }
+
 
 startScreen()
 startButton.addEventListener("click", startQuiz);
