@@ -1,35 +1,43 @@
+var timeRemaining = document.getElementById('Timer');
+var timeLeft = 90;
+var startButton = document.getElementById("start-quiz");
 
 
 var quizQuestions = [
   {
-    question: "Question 1: What is the capital of France?",
-    choices: ["London", "Paris", "Berlin", "Rome"],
-    rightAnswer: 2
+    question: "Question 1: What does javaScript automatically insert at the end of each line?",
+    choices: [",", ";", ":", "{}"],
+    correctAnswer: 2
   },
   {
     question: "Question 2: What symbols must follow a function for javascript to run?",
     choices: ["{}", "()", "<>", "[]"],
-    rightAnswer: 2
+    correctAnswer: 2
   },
   {
     question: "Question 3: What type of syntax is used to link a javaScript file to an HTML?",
-    choices: ["<link>", "<script>", "<src>", "<a>"],
-    rightAnswer: 2
+    choices: ["link", "script", "src", "a"],
+    correctAnswer: 2
   },
   {
-    question: "Question 4: What is the symbol for the chemical element iron?",
-    choices: ["Ir", "I", "In", "Fe"],
-    rightAnswer: 4
+    question: "What is Eli's bank info?",
+    choices: ["Ir", "I", "In", "[Redacted]"],
+    correctAnswer: 4
   },
   {
-    question: "Question 5: What is the largest ocean on Earth?",
+    question: "Who ivented javaScript?",
     choices: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
-    rightAnswer: 4
+    correctAnswer: 4
   }
 ];
-
 var currentQuestionIndex = 0;
 var score = 0;
+
+function startScreen(){
+  var questionPrompt = document.getElementById("question-prompt");
+  questionPrompt.textContent = "Would you like to take a short coding quiz? Click start to test yourself!"
+}
+
 
 function startQuiz() {
   displayQuestion();
@@ -39,7 +47,6 @@ function startQuiz() {
 function displayQuestion() {
   var questionPrompt = document.getElementById("question-prompt");
   var choicesList = document.getElementsByClassName("choices")[0];
-  
   questionPrompt.textContent = quizQuestions[currentQuestionIndex].question;
   
   choicesList.innerHTML = "";
@@ -63,6 +70,7 @@ function checkAnswer(event) {
     displayResult("Correct!", "green");
   } else {
     displayResult("Wrong!", "red");
+    timeReduction();
   }
   
   currentQuestionIndex++;
@@ -72,7 +80,13 @@ function checkAnswer(event) {
   } else {
     endQuiz();
   }
+
 }
+
+function timeReduction(){
+  timeLeft -= 20
+}
+
 
 function displayResult(message, color) {
   var resultElement = document.getElementsByClassName("result")[0];
@@ -82,15 +96,23 @@ function displayResult(message, color) {
 }
 
 function endQuiz() {
-  stopTimer();
-  alert("Quiz has ended! Your score is: " + score);
+  alert("Quiz has ended! Your score is: " + score + " With " + timeLeft + " seconds remaining!");
 }
 
 function startTimer() {
+  var timeInterval = setInterval(function (){
+
+    if (timeLeft > 0) {
+      timeRemaining.textContent = timeLeft + ' seconds remaining'
+      timeLeft--;
+
+    }else {
+      timeLeft.textContent = "";
+      clearInterval(timeInterval);
+      endQuiz()
+    }
+  }, 1000)
 }
 
-function stopTimer() {
-}
-
-var startButton = document.getElementById("start-quiz");
-startButton.addEventListener("click", startQuiz())
+startScreen()
+startButton.addEventListener("click", startQuiz);
