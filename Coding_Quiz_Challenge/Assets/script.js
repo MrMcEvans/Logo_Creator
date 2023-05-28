@@ -2,7 +2,7 @@ var timeRemaining = document.getElementById('Timer');
 var timeLeft = 90;
 var startButton = document.getElementById("start-quiz");
 
-
+//array of questions and answers
 var quizQuestions = [
   {
     question: "Question 1: What does javaScript automatically insert at the end of each line?",
@@ -25,25 +25,25 @@ var quizQuestions = [
     correctAnswer: 4
   },
   {
-    question: "Which of these 4 examples is an effective event listener distinction?",
-    choices: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+    question: "What javaScript function can assign multiple values to a variable?",
+    choices: ["function", "event.listener", "index", "array"],
     correctAnswer: 4
   }
 ];
 var currentQuestionIndex = 0;
 var score = 0;
-
+//opening text when page is loaded
 function startScreen(){
   var questionPrompt = document.getElementById("question-prompt");
   questionPrompt.textContent = "Would you like to take a short coding quiz? Click start to test yourself!"
 }
 
-
+//starts quiz when event.listener is triggered
 function startQuiz() {
   displayQuestion();
   startTimer();
 }
-
+//appends question to html elements
 function displayQuestion() {
   var questionPrompt = document.getElementById("question-prompt");
   var choicesList = document.getElementsByClassName("choices")[0];
@@ -60,7 +60,7 @@ function displayQuestion() {
     choicesList.appendChild(li);
   }
 }
-
+//Takes player input and determines if answer is correct
 function checkAnswer(event) {
   var selectedChoice = event.target.parentNode.id;
   var choiceIndex = parseInt(selectedChoice.replace("choiceInput", ""));
@@ -82,23 +82,23 @@ function checkAnswer(event) {
   }
 
 }
-
+//reduces timer by 20 seconds if player gets a question wrong
 function timeReduction(){
   timeLeft -= 20
 }
 
-
+//displays right or wrong depending on user input
 function displayResult(message, color) {
   var resultElement = document.getElementsByClassName("result")[0];
   
   resultElement.textContent = message;
   resultElement.style.color = color;
 }
-
+//Ends quiz and displays result
 function endQuiz() {
   alert("Quiz has ended! Your score is: " + score + " With " + timeLeft + " seconds remaining!");
 }
-
+//starts timer
 function startTimer() {
   var timeInterval = setInterval(function (){
 
@@ -117,3 +117,8 @@ function startTimer() {
 
 startScreen()
 startButton.addEventListener("click", startQuiz);
+
+
+
+
+//test comment
