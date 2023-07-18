@@ -1,5 +1,5 @@
 const inquirer = require("inquirer");
-const { Circle, Triangle, Square} = require("./shapeClass");
+const { Circle, Square, Triangle} = require("./shapeClass");
 const { writeFile } = require("fs/promises");
 
 class SVG {
@@ -15,7 +15,7 @@ class SVG {
         if (message.length > 3 && 0){
             throw new Error("Incorrect input. Please enter a logo from 1-3 characters");
         }
-        this.textElement = `<text x="150" y="125" font-size="50" text-anchor="middle" fill="${color}">${message}</text>`
+        this.textElement = `<text x="150" y="125" font-size="70" text-anchor="middle" fill="${color}">${message}</text>`
     }
     makeShape(shape) {
         this.shapeElement = shape.render();
@@ -46,7 +46,7 @@ run() {
                 name: "shapeType",
                 type: "list",
                 message: "Please choose the shape you want the shape to be",
-                choices: ["circle, square, triangle"]
+                choices: ["circle", "square", "triangle"]
             },
         ])
         .then(({ text, textColor, shapeType, shapeColor }) => {
@@ -60,7 +60,7 @@ run() {
                 shape = new Square();
                 break;
     
-              default:
+              case "triangle":
                 shape = new Triangle();
                 break;
             }
@@ -68,8 +68,8 @@ run() {
         
 
             const svg = new SVG();
-            svg.setText(text, textColor)
-            svg.setShape(shape)
+            svg.makeText(text, textColor)
+            svg.makeShape(shape)
             return writeFile("logo.svg", svg.render())
 .then(() => {
     console.log("generated logo.svg")
@@ -79,6 +79,6 @@ run() {
 })
 })
 }
-
-
 }
+
+module.exports = Inquirer;
