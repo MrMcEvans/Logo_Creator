@@ -50,7 +50,7 @@ run() {
             },
         ])
         .then(({ text, textColor, shapeType, shapeColor }) => {
-            let shape;
+            let userSj;
             switch (shapeType) {
               case "circle":
                 shape = new Circle();
