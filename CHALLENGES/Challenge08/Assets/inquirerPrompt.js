@@ -49,4 +49,36 @@ run() {
                 choices: ["circle, square, triangle"]
             },
         ])
+        .then(({ text, textColor, shapeType, shapeColor }) => {
+            let shape;
+            switch (shapeType) {
+              case "circle":
+                shape = new Circle();
+                break;
     
+              case "square":
+                shape = new Square();
+                break;
+    
+              default:
+                shape = new Triangle();
+                break;
+            }
+            shape.setColor(shapeColor);
+        
+
+            const svg = new SVG();
+            svg.setText(text, textColor)
+            svg.setShape(shape)
+            return writeFile("logo.svg", svg.render())
+.then(() => {
+    console.log("generated logo.svg")
+})
+.catch((err) => {
+    console.log(err)
+})
+})
+}
+
+
+}
