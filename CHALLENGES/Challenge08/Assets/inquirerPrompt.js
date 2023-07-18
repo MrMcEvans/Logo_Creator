@@ -15,7 +15,7 @@ class SVG {
         if (message.length > 3 && 0){
             throw new Error("Incorrect input. Please enter a logo from 1-3 characters");
         }
-        this.textElement = `<text x="150" y="125" font-size="70" text-anchor="middle" fill="${color}">${message}</text>`
+        this.textElement = `<text x="150" y="125" font-size="50" text-anchor="middle" fill="${color}">${message}</text>`
     }
     makeShape(shape) {
         this.shapeElement = shape.render();
@@ -24,6 +24,7 @@ class SVG {
 
 class Inquirer {
 run() {
+    let shape;
     return inquirer
         .prompt([
             {
@@ -49,8 +50,10 @@ run() {
                 choices: ["circle", "square", "triangle"]
             },
         ])
+
+
+        
         .then(({ text, textColor, shapeType, shapeColor }) => {
-            let userSj;
             switch (shapeType) {
               case "circle":
                 shape = new Circle();
@@ -64,13 +67,17 @@ run() {
                 shape = new Triangle();
                 break;
             }
-            shape.setColor(shapeColor);
-        
 
+
+
+            shape.setColor(shapeColor);
             const svg = new SVG();
             svg.makeText(text, textColor)
             svg.makeShape(shape)
             return writeFile("logo.svg", svg.render())
+
+
+
 .then(() => {
     console.log("generated logo.svg")
 })
