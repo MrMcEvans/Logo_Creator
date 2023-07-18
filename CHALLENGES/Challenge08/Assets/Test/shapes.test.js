@@ -29,3 +29,5 @@ describe("Triangle", () => {
         expect(triangleRender).toEqual(expectedTriangle)
     })
 })
+
+
