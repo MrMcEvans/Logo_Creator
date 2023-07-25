@@ -1,6 +1,9 @@
 <h1># User_Generated_Logo</h1>
 
 
+'## Click the button to watch my walkthrough video on YouTube!
+[![Watch the video](https://cdn-icons-png.flaticon.com/256/1384/1384060.png)](https://www.youtube.com/watch?v=bveFOJrZfVo)'
+
 ![Github license](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 
@@ -53,6 +56,5 @@ If you have any questions you can contact me at my GitHub (1) or by email (2)
 (2) AndrewMcEvans1@gmail.com
 
 
-VIDEO TUTORIAL: https://app.screencastify.com/manage/videos/IOmzhZrPWshaoftBzhDm
 
 <p>
